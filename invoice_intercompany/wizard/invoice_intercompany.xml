@@ -1,0 +1,38 @@
+<odoo>
+
+    <record id="wizard_invoice_intercompany" model="ir.ui.view">
+        <field name="name">Générer les factures IS</field>
+        <field name="model">invoice.intercompany</field>
+        <field name="arch" type="xml">
+
+            <form string="Générer les factures">
+                <sheet>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                    <footer>
+                        <button string="Générer" class="btn btn-primary" type="object" name="run"/>
+                        <button string="Annuler" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="action_ii" model="ir.actions.act_window">
+        <field name="name">Factures IS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">invoice.intercompany</field>
+        <field name="search_view_id" ref="invoice_intercompany.wizard_invoice_intercompany"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menuitem_parent_ii" name="Facture intersociété" parent="account_accountant.menu_accounting"
+              groups="base.group_user" sequence="21"/>
+
+    <menuitem id="menuitem_ii" name="Générer les factures" parent="menuitem_parent_ii"
+              action="action_ii" sequence="1" groups="base.group_user"/>
+
+</odoo>

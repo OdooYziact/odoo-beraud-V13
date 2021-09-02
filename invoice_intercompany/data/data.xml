@@ -1,0 +1,10 @@
+<odoo>
+
+    <record id="product_time_spent" model="product.product">
+        <field name="name">Temps passé</field>
+        <field name="type">service</field>
+        <field name="lst_price">100.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+
+</odoo>
