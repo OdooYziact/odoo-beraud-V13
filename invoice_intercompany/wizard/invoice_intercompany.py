@@ -132,8 +132,8 @@ class InvoiceIntercompany(models.TransientModel):
                     purchase_invoice_lines += self._prepare_account_move_line_values(sum(lines.mapped('amount')), time_spent_product_id, purchase_company_id)
 
                 if stock_lines:
-                    sale_invoice_lines += self._prepare_invoice_lines_values_stock(stock_move_per_companies, sale_company_id)
-                    purchase_invoice_lines += self._prepare_account_move_line_values_stock(stock_move_per_companies, purchase_company_id)
+                    sale_invoice_lines += self._prepare_account_move_lines_values_stock(stock_move_per_companies, sale_company_id)
+                    purchase_invoice_lines += self._prepare_account_move_lines_values_stock(stock_move_per_companies, purchase_company_id)
 
                 # add lines values to invoice values
                 sale_invoice_values['invoice_line_ids'] = sale_invoice_lines
