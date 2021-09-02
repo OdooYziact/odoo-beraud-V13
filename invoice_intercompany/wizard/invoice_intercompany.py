@@ -132,8 +132,8 @@ class InvoiceIntercompany(models.TransientModel):
                     purchase_invoice_lines += self._prepare_account_move_line_values(sum(lines.mapped('amount')), time_spent_product_id, purchase_company_id)
 
                 if stock_lines:
-                    sale_invoice_lines += self._prepare_account_move_lines_values_stock(stock_move_per_companies, sale_company_id)
-                    purchase_invoice_lines += self._prepare_account_move_lines_values_stock(stock_move_per_companies, purchase_company_id)
+                    sale_invoice_lines += self._prepare_account_move_lines_values_stock(stock_lines, sale_company_id)
+                    purchase_invoice_lines += self._prepare_account_move_lines_values_stock(stock_lines, purchase_company_id)
 
                 # add lines values to invoice values
                 sale_invoice_values['invoice_line_ids'] = sale_invoice_lines
@@ -177,16 +177,16 @@ class InvoiceIntercompany(models.TransientModel):
             'price_unit': product_id.list_price,
         })]
 
-    def _prepare_account_move_lines_values_stock(self, stock_moves_per_companies, company_id):
+    def _prepare_account_move_lines_values_stock(self, stock_moves, company_id):
         """
         prepare values to create account move lines (stock moves)
-        :param stock_moves_per_companies: stock moves to use to create the lines
+        :param stock_moves: stock moves to use to create the lines
         :param company_id
         :return: dict of values for creation
         """
         account_move_line_values = []
 
-        for stock_move in stock_moves_per_companies:
+        for stock_move in stock_moves:
             account_move_line_values.append(
                 (0, False, {
                     'product_id': stock_move.product_id.with_context({'force_company': company_id.id}).id,
