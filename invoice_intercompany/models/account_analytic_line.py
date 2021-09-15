@@ -10,4 +10,4 @@ class AccountAnalyticLine(models.Model):
     is_invoiced = fields.Boolean(default=False)
 
     #### RELATION ####
-    account_move_id = fields.Many2one(string="Facture IS", comodel_name="account.move")
+    account_move_ids = fields.Many2many(string="Factures IS", comodel_name="account.move")

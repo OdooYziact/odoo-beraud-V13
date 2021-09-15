@@ -154,6 +154,10 @@ class InvoiceIntercompany(models.TransientModel):
                     is_sale_invoice_created.write({'account_analytic_line_ids': [(6, False, lines.ids)], 'stock_move_ids': [(6, False, stock_lines.ids)]})
                     is_purchase_invoice_created.write({'account_analytic_line_ids': [(6, False, lines.ids)], 'stock_move_ids': [(6, False, stock_lines.ids)]})
 
+                    # indicate what are the linked invoices for each line
+                    lines.write({'account_move_ids': [(4, is_sale_invoice_created.id, False), (4, is_purchase_invoice_created.id, False)]})
+                    stock_lines.write({'account_move_ids': [(4, is_sale_invoice_created.id, False), (4, is_purchase_invoice_created.id, False)]})
+
     def _prepare_account_move_values(self, type, partner_id):
         """
         prepare values to create an account move
@@ -179,6 +183,7 @@ class InvoiceIntercompany(models.TransientModel):
             'product_id': product_id.with_context({'force_company': company_id.id}).id,
             'quantity': product_quantity,
             'price_unit': product_id.list_price,
+            'product_uom_id': product_id.uom_id.id
         })]
 
     def _prepare_account_move_lines_values_stock(self, stock_moves, company_id):
@@ -195,7 +200,8 @@ class InvoiceIntercompany(models.TransientModel):
                 (0, False, {
                     'product_id': stock_move.product_id.with_context({'force_company': company_id.id}).id,
                     'quantity': stock_move.quantity_done,
-                    'price_unit': stock_move.product_id.list_price
+                    'price_unit': stock_move.product_id.list_price,
+                    'product_uom_id': stock_move.product_id.uom_id.id
                 })
             )
 
