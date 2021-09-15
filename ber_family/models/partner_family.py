@@ -7,7 +7,7 @@ class PartnerFamily(models.Model):
     _name = 'partner.family'
 
     #### TEXT ####
-    name = fields.Char(string="Nom")
+    name = fields.Char(string="Nom", required=True)
     description = fields.Text(string="Description")
 
     #### RELATION ####

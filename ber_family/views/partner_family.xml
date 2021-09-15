@@ -10,8 +10,8 @@
                 <group>
                     <field name="name"/>
                     <field name="description"/>
-                    <field name="partner_ids"/>
-                    <field name="account_move_ids"/>
+                    <field name="partner_ids" widget="many2many"/>
+                    <field name="account_move_ids" widget="many2many"/>
                 </group>
             </form>
 
@@ -37,6 +37,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="partner_family_menu" name="Partner families" parent="contacts.res_partner_menu_config" action="partner_family_action" sequence="7"/>
+    <menuitem id="partner_family_menu" name="Familles de contact" parent="contacts.res_partner_menu_config" action="partner_family_action" sequence="7"/>
 
 </odoo>

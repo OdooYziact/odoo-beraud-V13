@@ -7,7 +7,7 @@ class ProductFamily(models.Model):
     _name = 'product.family'
 
     #### TEXT ####
-    name = fields.Char(string="Nom")
+    name = fields.Char(string="Nom", required=True)
     description = fields.Text(string="Description")
 
     #### RELATION ####
