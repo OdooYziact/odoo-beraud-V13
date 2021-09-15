@@ -11,7 +11,7 @@
         'product',
         'account',
         'stock',
-        'contact'
+        'contacts'
     ],
 
     'data': [
