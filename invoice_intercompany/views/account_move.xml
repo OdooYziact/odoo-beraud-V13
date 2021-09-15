@@ -8,8 +8,10 @@
 
             <xpath expr="//notebook/page[@id='other_tab']" position="before">
                 <page string="Eléments facturés" name="time_stock_invoiced" attrs="{'invisible': [('account_analytic_line_ids', '=', False), ('stock_move_ids', '=', False)]}">
-                    <field name="account_analytic_line_ids"/>
-                    <field name="stock_move_ids"/>
+                    <group>
+                        <field name="account_analytic_line_ids"/>
+                        <field name="stock_move_ids"/>
+                    </group>
                 </page>
             </xpath>
 
