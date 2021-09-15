@@ -1,6 +1,6 @@
 <odoo>
 
-    <record id="wizard_invoice_intercompany" model="ir.ui.view">
+    <record id="wizard_invoice_intercompany_form" model="ir.ui.view">
         <field name="name">Générer les factures IS</field>
         <field name="model">invoice.intercompany</field>
         <field name="arch" type="xml">
@@ -20,19 +20,18 @@
         </field>
     </record>
 
-    <record id="action_ii" model="ir.actions.act_window">
+    <record id="wizard_invoice_intercompany_action" model="ir.actions.act_window">
         <field name="name">Factures IS</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">invoice.intercompany</field>
-        <field name="search_view_id" ref="invoice_intercompany.wizard_invoice_intercompany"/>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
 
-    <menuitem id="menuitem_parent_ii" name="Facture intersociété" parent="account_accountant.menu_accounting"
+    <menuitem id="wizard_invoice_intercompany_menu_parent" name="Facture intersociété" parent="account_accountant.menu_accounting"
               groups="base.group_user" sequence="21"/>
 
-    <menuitem id="menuitem_ii" name="Générer les factures" parent="menuitem_parent_ii"
-              action="action_ii" sequence="1" groups="base.group_user"/>
+    <menuitem id="wizard_invoice_intercompany_menu" name="Générer les factures" parent="wizard_invoice_intercompany_menu_parent"
+              action="wizard_invoice_intercompany_action" sequence="1" groups="base.group_user"/>
 
 </odoo>

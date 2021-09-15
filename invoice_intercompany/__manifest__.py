@@ -3,7 +3,7 @@
     'name': "Invoice Inter-company",
     'summary': "Invoice Inter-company",
     'author': "Yziact (VRA)",
-    'maintainer': "CC",
+    'maintainer': "CCA",
     'category': "Invoicing",
     'version': "0.1",
     'depends': [

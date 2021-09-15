@@ -1,14 +1,15 @@
 <odoo>
     
     <record id="view_move_form" model="ir.ui.view">
-        <field name="name">IS</field>
+        <field name="name">Facture IS</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
 
             <xpath expr="//notebook/page[@id='other_tab']" position="before">
-                <page string="Temps facturé" name="time_invoiced" attrs="{'invisible': [('account_analytic_line_ids', '=', False)]}">
-                    <field name="account_analytic_line_ids" nolabel="1"/>
+                <page string="Eléments facturés" name="time_stock_invoiced" attrs="{'invisible': [('account_analytic_line_ids', '=', False), ('stock_move_ids', '=', False)]}">
+                    <field name="account_analytic_line_ids"/>
+                    <field name="stock_move_ids"/>
                 </page>
             </xpath>
 
