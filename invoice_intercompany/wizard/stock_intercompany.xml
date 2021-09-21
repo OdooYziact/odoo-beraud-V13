@@ -1,0 +1,39 @@
+<odoo>
+
+    <record id="wizard_invoice_intercompany_form" model="ir.ui.view">
+        <field name="name">Mouvement intersociété</field>
+        <field name="model">stock.intercompany</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <field name="source_company_id"/>
+                        <field name="destination_company_id"/>
+                        <field name="source_location_id"/>
+                        <field name="destination_location_id"/>
+                        <field name="origin"/>
+                        <field name="line_ids"/>
+                    </group>
+                    <footer>
+                        <button string="Valider" class="btn btn-primary" type="object" name="run"/>
+                        <button string="Annuler" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="wizard_invoice_intercompany_action" model="ir.actions.act_window">
+        <field name="name">Mouvement intersociété</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.intercompany</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="wizard_stock_intercompany_menu" name="Mouvement intersociété" parent="wizard_invoice_intercompany_menu_parent"
+              action="wizard_invoice_intercompany_action" sequence="2" groups="base.group_user"/>
+
+</odoo>

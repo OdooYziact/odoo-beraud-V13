@@ -18,6 +18,7 @@
     'data': [
         'data/data.xml',
         'wizard/invoice_intercompany.xml',
+        'wizard/stock_intercompany.xml',
         'views/account_move.xml',
         'security/ir.model.access.csv'
     ]
