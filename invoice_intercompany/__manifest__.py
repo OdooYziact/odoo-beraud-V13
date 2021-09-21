@@ -11,7 +11,8 @@
         'purchase',
         'sale',
         'product',
-        'account'
+        'account',
+        'account_accountant'
     ],
 
     'data': [

@@ -37,10 +37,10 @@ class InvoiceIntercompany(models.TransientModel):
 
         if self.end_date:
             # select only the done stock moves of type internal
-            receipt_picking_types = self.env['stock.picking.type'].search([('code', '=', 'internal')])
+            internal_picking_types = self.env['stock.picking.type'].search([('code', '=', 'internal')])
 
             stock_moves = self.env['stock.move'].sudo().search([
-                ('picking_id.picking_type_id', 'in', receipt_picking_types.ids),
+                ('picking_id.picking_type_id', 'in', internal_picking_types.ids),
                 ('picking_id.date_done', '<=', self.end_date),
                 ('state', '=', 'done'),
                 ('is_invoiced', '=', False)
@@ -182,7 +182,7 @@ class InvoiceIntercompany(models.TransientModel):
         return [(0, False, {
             'product_id': product_id.with_context({'force_company': company_id.id}).id,
             'quantity': product_quantity,
-            'price_unit': product_id.list_price,
+            'price_unit': product_id.lst_price,
             'product_uom_id': product_id.uom_id.id
         })]
 
@@ -200,7 +200,7 @@ class InvoiceIntercompany(models.TransientModel):
                 (0, False, {
                     'product_id': stock_move.product_id.with_context({'force_company': company_id.id}).id,
                     'quantity': stock_move.quantity_done,
-                    'price_unit': stock_move.product_id.list_price,
+                    'price_unit': stock_move.product_id.lst_price,
                     'product_uom_id': stock_move.product_id.uom_id.id
                 })
             )
