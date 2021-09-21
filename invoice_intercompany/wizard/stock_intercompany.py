@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.Exceptions import UserError
+from odoo.exceptions import UserError
 
 
 class StockIntercompany(models.TransientModel):
